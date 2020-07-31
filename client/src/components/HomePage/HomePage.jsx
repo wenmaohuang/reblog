@@ -41,6 +41,7 @@ class HomePage extends React.Component {
             <p>QQ:648371113</p>
             <p>邮箱:648371113@qq.com</p>
           </div>
+          <div className="test"></div>
         </footer>
       </div>
 

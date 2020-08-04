@@ -5,7 +5,8 @@ import './App.css';
 import HomePage from './components/HomePage/HomePage';
 
 class App extends Component {
-  render(){
+    console.log('!@')
+    render(){
     return (
       <div className="App">
         <HomePage></HomePage>

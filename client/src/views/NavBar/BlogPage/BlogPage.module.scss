@@ -1,0 +1,11 @@
+.container {
+  display:flex;
+  width: 1260px;
+  margin: 20px auto; 
+  .sidebar{
+    // position: absolute;
+    // float: right;
+    // right: 0;
+    width: 300px;
+  }
+}

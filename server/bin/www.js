@@ -10,7 +10,7 @@ var http = require('http')
 //     key:fs.readFileSync(path.join(__dirname,'../https/4197482_www.fyyd.vip.key')),
 //     cert:fs.readFileSync(path.join(__dirname,'../https/4197482_www.fyyd.vip.pem'))
 // }
-var port = normalizePort(process.env.PORT || '3000')
+var port = normalizePort(process.env.PORT || '3001')
 app.set('port', port)
 // http.createServer(app).listen(80)
 var server = http.createServer(app)

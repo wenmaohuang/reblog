@@ -153,7 +153,7 @@ class SearchUrl extends React.Component {
             url: Object.keys(this.newUrlList).map((key) => {
                 return (
                     <li style={{display:'block', width: '300px', listStyleType: 'none' }} key={key}>
-                        <a style={{ textAlign: 'center' }} href={this.urlresult[key]} >
+                        <a style={{ textAlign: 'center' }} href={this.newUrlList[key]} >
                             {key}
                         </a>
                     </li>
@@ -170,7 +170,7 @@ class SearchUrl extends React.Component {
                 url: Object.keys(this.newUrlList).map((key) => {
                     return (
                         <li style={{display:'block', width: '300px', listStyleType: 'none' }} key={key}>
-                            <a style={{ textAlign: 'center' }} href={this.urlresult[key]} >
+                            <a style={{ textAlign: 'center' }} href={this.newUrlList[key]} >
                                 {key}
                             </a>
                         </li>

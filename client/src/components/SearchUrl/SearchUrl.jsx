@@ -108,11 +108,12 @@ class SearchUrl extends React.Component {
     }
     handleSearchUrl = () => {
         this.keyword = this.textInput.value
+        console.log(this.textInput.value,'%&');
         this.urlKeyList = []
 
         for (var key in this.newUrlList) {
             if (this.keyword) {
-                var reg = new RegExp("^" + this.keyword+"$");
+                var reg = new RegExp("^" + this.keyword);
                 this.urlKey = key.match(reg);
                 if (this.urlKey !== null) {
                     var urlResultKey = this.urlKey["input"];
@@ -132,7 +133,7 @@ class SearchUrl extends React.Component {
                 this.urlKeyList = []
             }
         }
-        // console.log(this.urlresult,'%!');
+        console.log(this.urlresult,'%!');
         this.setState({
             url: Object.keys(this.urlresult).map((key) => {
                 return (

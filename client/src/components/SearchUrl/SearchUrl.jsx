@@ -185,8 +185,8 @@ class SearchUrl extends React.Component {
         return (
             <ul className={styles.hideScollbar} onMouseEnter={this.handleFocus}
                 style={{ display: 'flex',width:'500px',fontSize:'20px', height: '300px',margin:'0 auto', overflow: 'scroll', flexDirection: 'column', alignItems: 'center' }}>
-                <input ref={(input) => { this.textInput = input; }} onKeyUp={this.keyUp} onInput={this.handleSearchUrl}
-                    style={{ display:'block',textIndent:'0.5rem',margin:'10px 0', width: '300px',height:'45px',lineHeight:'45px',borderRadius:'10px', }}
+                <input className={styles.hideBorder} ref={(input) => { this.textInput = input; }} onKeyUp={this.keyUp} onInput={this.handleSearchUrl}
+                    style={{ display:'inlineBlock',textIndent:'0.5rem',fontSize:'20px',margin:'10px 0', width: '300px',lineHeight:'45px',borderRadius:'10px', }}
                     type="text"
                 />
                 {this.state.url}

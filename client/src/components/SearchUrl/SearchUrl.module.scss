@@ -1,0 +1,11 @@
+
+.hideScollbar::-webkit-scrollbar{
+    display:none
+    
+}
+.hideScollbar{
+    :focus{
+        outline:  0 solid #aaa 
+    }
+   
+}

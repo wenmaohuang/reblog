@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './HomePage.scss'
 import {  Link } from "react-router-dom";
 import SearchUrl from '../../components/SearchUrl';
+import SearchInfo from '../../components/SearchInfo/SearchInfo';
 
 
 let height = window.innerHeight
@@ -19,6 +20,7 @@ class HomePage extends Component {
       
       <div className='container' >
           <div className="main" style={main}>
+            <SearchInfo></SearchInfo>
 
           </div>
           <footer>

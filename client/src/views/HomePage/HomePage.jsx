@@ -3,6 +3,9 @@ import './HomePage.scss'
 import {  Link } from "react-router-dom";
 import SearchUrl from '../../components/SearchUrl';
 import SearchInfo from '../../components/SearchInfo/SearchInfo';
+import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
+import NavBar from "../NavBar"
+import ManagePage from '../NavBar/ManagePage';
 
 
 let height = window.innerHeight
@@ -18,7 +21,8 @@ class HomePage extends Component {
   render() {
     return (
       
-      <div className='container' >
+ 
+        <div className='container' >
           <div className="main" style={main}>
             <SearchInfo></SearchInfo>
 
@@ -51,6 +55,7 @@ class HomePage extends Component {
           </footer>
           <SearchUrl></SearchUrl>
         </div>
+        
 
     )
   }

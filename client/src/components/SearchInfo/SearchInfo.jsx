@@ -5,26 +5,82 @@ import styles from "./SearchInfo.module.scss";
 class SearchInfo extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            result: '',
+        }
+
     }
-   
+
     handleFetch = () => {
-        console.log(this.textInput.value,'%(');
-        fetch("https://test.fyyd.vip:3102/search?word=" + this.textInput.value)
-                .then(res => res.json())
-                .then(msg => {
-                    this.jsonArr = msg;
-                    console.log(this.jsonArr,'%*');
-                });
+        fetch("http://localhost:3001/search?word=" + this.textInput.value)
+            .then(res => res.json())
+            .then(msg => {
+                this.setState({
+
+                    result: msg.map((item,index) => {
+                        return (
+
+                            <li key={index} style={{listStyleType:'none',margin:'5px',fontSize:'20px'}}>
+                                <a href={'https://www.baidu.com/s?wd=' + item} target="_blank">{item}</a>
+                            </li>
+                        )
+                    }
+                    )
+                })
+                console.log(this.jsonArr, '%*');
+            });
+    }
+    handleSarch = (e) => {
+        // e.preventDefault()
+        
+        if(e.keyCode === 13){
+            console.log('^(');
+
+            function setStore(data) {
+                const list = JSON.parse(localStorage.getItem("list")) || [];
+                list.push(data);
+                if (list.length > 8) {
+                    list.shift();
+                }
+                localStorage.setItem("list", JSON.stringify(list));
+            }
+            setStore(this.textInput.value);
+            
+            window.location.href = "https://www.baidu.com/s?wd=" + this.textInput.value;
+        }
+    }
+    handleFocus = ()=>{
+        this.setState({
+
+            result: JSON.parse(localStorage.getItem("list")).map((item,index) => {
+                return (
+
+                    <li key={index} style={{listStyleType:'none',margin:'5px',fontSize:'20px'}}>
+                        <a href={'https://www.baidu.com/s?wd=' + item} target="_blank">{item}</a>
+                    </li>
+                )
+            }
+            )
+        })
     }
 
     render() {
-        console.log(this.refs.textInput, '%-');
 
         return (
-            <div className={styles.main} style={{ display: 'flex', justifyContent: 'center' }}>
-                <input onInput={this.handleFetch} autoFocus ref={(input) => { this.textInput = input; }} className={styles.handleFocus}
-                    style={{ position: 'absolute', top: '20%', borderRadius: '10px',fontSize:'20px',textIndent:'0.5em', border: '1px solid #000', color: '#000', width: '400px', height: '45px' }}></input>
+            <div className={styles.main}
+                style={{ position: 'absolute', backgroundColor: 'transparent', width: '100%', margin: '200px auto', flexDirection: 'column', display: 'flex' }}>
+                <div className="input"  style={{display:'flex',margin:'0 auto'}}>
+                    <input onFocus={this.handleFocus} onKeyUp = {this.handleSarch} onInput={this.handleFetch} autoFocus ref={(input) => { this.textInput = input; }} className={styles.handleFocus}
+                        style={{ borderRadius: '10px 0 0 10px', boxSizing:'border-box',fontSize: '20px', textIndent: '0.5em', border: '1px solid #000', color: '#000', width: '400px', height: '50px' }}></input>
+                    <button  style={{width:'80px',height:'50px',borderRadius:'0 10px 10px 0',boxSizing:'border-box',border: '1px solid #000'}}
+                    >搜索</button>
+                </div>
+                <ul
+                    style={{ backgroundColor: '#fff', width: '480px',margin:'10px auto',borderRadius:'10px'}}>
+                    {this.state.result}
+                </ul>
             </div>
+
         )
     }
 }

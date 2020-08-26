@@ -18,9 +18,11 @@ import BlogPage from "./views/NavBar/BlogPage"
 import getArticle from './store/action'
 
 
-
+import VConsole from 'vconsole'
 
 import api from './api/index'
+
+var vConsole = new VConsole();
 const getArticleShow = api.getArticleShow
 
 class App extends Component {
@@ -31,22 +33,22 @@ class App extends Component {
     this.ifLogin = false
 
   }
-  
 
-  
+
+
   componentDidMount() {
 
-        this.props.getArticle()
+    this.props.getArticle()
 
 
-    
+
 
 
   }
 
 
 
-  
+
 
 
   render() {
@@ -54,19 +56,19 @@ class App extends Component {
     return (
 
       <Router >
-        <div  className="App">
-          
+        <div className="App">
+
 
         </div>
 
         <Switch>
-            <Route exact path="/" component={HomePage} />
-            
-         
+          <Route exact path="/" component={HomePage} />
 
-            <Route   path="/nav" component={NavBar} />
-            <Route  path="/nav/manage/:id" component={ManagePage} />
-          </Switch>
+
+
+          <Route path="/nav" component={NavBar} />
+          <Route path="/nav/manage/:id" component={ManagePage} />
+        </Switch>
       </Router>
     )
   }

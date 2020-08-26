@@ -1,6 +1,7 @@
 
 import React from "react";
 import styles from "./SearchUrl.module.scss";
+import Media from 'react-media';
 
 
 
@@ -184,15 +185,42 @@ class SearchUrl extends React.Component {
     render() {
         console.log(this.textInput, '%!');
         return (
-            <ul className={styles.hideScollbar} onMouseEnter={this.handleFocus}
-                style={{ display: 'flex',width:'500px',fontSize:'20px', height: '300px',margin:'0 auto', overflow: 'scroll', flexDirection: 'column', alignItems: 'center' }}>
-                <input className={styles.hideBorder} ref={(input) => { this.textInput = input; }} onKeyUp={this.keyUp} onInput={this.handleSearchUrl}
-                    style={{ display:'inlineBlock',textIndent:'0.5rem',fontSize:'20px',margin:'10px 0', width: '300px',lineHeight:'45px',borderRadius:'10px', }}
-                    type="text"
-                />
-                {this.state.url}
 
-            </ul>
+            <Media queries={{
+                small: "(max-width: 499px)",
+                // medium: "(min-width: 600px) and (max-width: 1199px)",
+                large: "(min-width: 500px)"
+            }}>
+                {matches => (
+
+                    <div>
+                        {matches.small &&
+                             <ul className={styles.hideScollbar} onMouseEnter={this.handleFocus}
+                             style={{ display: 'flex',width:'300px',padding:'0',fontSize:'20px', height: '300px',margin:'0 auto', overflow: 'scroll', flexDirection: 'column', alignItems: 'center' }}>
+                             <input className={styles.hideBorder} ref={(input) => { this.textInput = input; }} onKeyUp={this.keyUp} onInput={this.handleSearchUrl}
+                                 style={{ display:'inlineBlock',textIndent:'0.5rem',fontSize:'20px',margin:'10px 0', width: '300px',lineHeight:'45px',borderRadius:'10px', }}
+                                 type="text"
+                             />
+                             {this.state.url}
+             
+                         </ul>
+                        }
+                        {/* {matches.medium && <p>I am medium!</p>} */}
+                        {matches.large && 
+                          <ul className={styles.hideScollbar} onMouseEnter={this.handleFocus}
+                          style={{ display: 'flex',width:'400px',padding:'0',fontSize:'20px', height: '300px',margin:'0 auto', overflow: 'scroll', flexDirection: 'column', alignItems: 'center' }}>
+                          <input className={styles.hideBorder} ref={(input) => { this.textInput = input; }} onKeyUp={this.keyUp} onInput={this.handleSearchUrl}
+                              style={{ display:'inlineBlock',textIndent:'0.5rem',fontSize:'20px',margin:'10px 0', width: '400px',lineHeight:'45px',borderRadius:'10px', }}
+                              type="text"
+                          />
+                          {this.state.url}
+          
+                      </ul>
+                        }
+                    </div>
+                )}
+            </Media>
+          
         )
     }
 

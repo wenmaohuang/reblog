@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import BlogPage from "./BlogPage"
 import ManagePage from "./ManagePage"
 
+import Media from 'react-media';
 
 
 import Button from 'antd/lib/button'
@@ -59,40 +60,67 @@ class NavBar extends Component {
 
         return (
             <Router>
-                <div className={styles.navMain}>
-                    <div className={styles.logo}>FYYD</div>
-                    <div className={styles.nav}>
-                        <ul >
-                            <li>
-                                <Link onClick={this.handleRefresh} to={"/"}>首页</Link>
+               
 
-                            </li>
-                            <li>
-                                <Link to="/nav/blog">博客</Link>
-                            </li>
-                            <li>
-                                <Link to="/nav/manage">管理</Link>
-                            </li>
-                            <li>
-                                <Link to="/message">留言</Link>
-                            </li>
-                            <li>
-                                <Link to="/daily">日记</Link>
-                            </li>
-                            
-                            <li>
-                                <Link to="/links">友链</Link>
-                            </li>
-                            <li>
-                                <Link to="/about">关于</Link>
-                            </li>
-                        </ul>
+                <Media queries={{
+                small: "(max-width: 499px)",
+                // medium: "(min-width: 600px) and (max-width: 1199px)",
+                large: "(min-width: 500px)"
+            }}>
+                {matches => (
+
+                    <div>
+                        {matches.small &&
+                             <div className={styles.navMain}>
+                             <div className={styles.logo}>FYYD</div>
+                             
+                             <div className={styles.login}>
+                                 {login}
+                             </div >
+         
+                         </div >
+                        }
+                        {/* {matches.medium && <p>I am medium!</p>} */}
+                        {matches.large && 
+                         <div className={styles.navMain}>
+                         <div className={styles.logo}>FYYD</div>
+                         <div className={styles.nav}>
+                             <ul >
+                                 <li>
+                                     <Link onClick={this.handleRefresh} to={"/"}>首页</Link>
+     
+                                 </li>
+                                 <li>
+                                     <Link to="/nav/blog">博客</Link>
+                                 </li>
+                                 <li>
+                                     <Link to="/nav/manage">管理</Link>
+                                 </li>
+                                 <li>
+                                     <Link to="/message">留言</Link>
+                                 </li>
+                                 <li>
+                                     <Link to="/daily">日记</Link>
+                                 </li>
+                                 
+                                 <li>
+                                     <Link to="/links">友链</Link>
+                                 </li>
+                                 <li>
+                                     <Link to="/about">关于</Link>
+                                 </li>
+                             </ul>
+                         </div>
+                         <div className={styles.login}>
+                             {login}
+                         </div >
+     
+                     </div >
+                        }
                     </div>
-                    <div className={styles.login}>
-                        {login}
-                    </div >
-
-                </div >
+                )}
+            </Media>
+            
 
 
                 <Switch>

@@ -10,6 +10,7 @@ import ArticleMain from '../../../components/ArticleMain/ArticleMain';
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // <Route  path="/nav/:id" component={NavBar} />
+import Media from 'react-media';
 
 class BlogPage extends React.Component {
   constructor(props) {
@@ -18,17 +19,39 @@ class BlogPage extends React.Component {
   }
   render() {
     return (
-      <div className={styles.container}>
-        <ArticleMain {...this.props}></ArticleMain>        
-        <div className={styles.sidebar}>
-          <ArticleSearch></ArticleSearch>
-          <ArticleSelect></ArticleSelect>
-          <ArticleTop></ArticleTop>
-          <ArticleHot></ArticleHot>
-          <Visitor></Visitor>
-        </div>
+     
+        <Media queries={{
+          small: "(max-width: 499px)",
+          // medium: "(min-width: 600px) and (max-width: 1199px)",
+          large: "(min-width: 500px)"
+      }}>
+          {matches => (
 
-      </div>
+              <div>
+                  {matches.small &&
+                      <div className={styles.container}>
+                      <ArticleMain {...this.props}></ArticleMain>        
+                     
+              
+                    </div>
+                  }
+                  {/* {matches.medium && <p>I am medium!</p>} */}
+                  {matches.large && 
+                    <div className={styles.container}>
+                    <ArticleMain {...this.props}></ArticleMain>        
+                    <div className={styles.sidebar}>
+                      <ArticleSearch></ArticleSearch>
+                      <ArticleSelect></ArticleSelect>
+                      <ArticleTop></ArticleTop>
+                      <ArticleHot></ArticleHot>
+                      <Visitor></Visitor>
+                    </div>
+            
+                  </div>
+                  }
+              </div>
+          )}
+      </Media>
     )
   }
 }

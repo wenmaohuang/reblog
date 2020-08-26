@@ -84,14 +84,14 @@ class SearchInfo extends React.Component {
                                 <div className="input"
                                     style={{ display: 'flex', margin: '0 auto' }}>
                                     <input onFocus={this.handleFocus} onKeyUp={this.handleSarch} onInput={this.handleFetch} autoFocus ref={(input) => { this.textInput = input; }} className={styles.handleFocus}
-                                        style={{ borderRadius: '10px 0 0 10px', boxSizing: 'border-box', fontSize: '20px', textIndent: '0.5em', border: '1px solid #000', color: '#000', width: '300px', height: '50px' }}></input>
+                                        style={{ borderRadius: '10px 0 0 10px', boxSizing: 'border-box', fontSize: '20px', textIndent: '0.5em', border: '1px solid #000', color: '#000', width: '260px', height: '50px' }}></input>
                                     <button
                                         style={{ width: '80px', height: '50px', borderRadius: '0 10px 10px 0', boxSizing: 'border-box', border: '1px solid #000' }}
                                     >搜索</button>
 
                                 </div>
                                 <ul
-                                    style={{ backgroundColor: '#fff', width: '380px', margin: '10px auto', borderRadius: '10px' }}>
+                                    style={{ backgroundColor: '#fff', width: '340px', margin: '10px auto', borderRadius: '10px' }}>
                                     {this.state.result}
                                 </ul>
 

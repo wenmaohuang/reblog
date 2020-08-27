@@ -62,7 +62,7 @@ class App extends Component {
         </div>
 
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route   exact path="/" component={HomePage} />
 
 
 
@@ -88,5 +88,5 @@ const mapActionsToProps = (dispatch) => {
     }
   }
 }
-export default withRouter(connect(mapStateToProps, mapActionsToProps)(App));
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(App));
 // export default withRouter(App);

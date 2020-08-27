@@ -18,6 +18,9 @@ class HomePage extends Component {
     super(props)
     console.log('!@');
   }
+  componentDidMount(){
+    document.title = "风移影动"
+  }
   render() {
     return (
       

@@ -24,7 +24,8 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
@@ -196,6 +197,10 @@ module.exports = function(webpackEnv) {
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
+        // new UglifyJsPlugin({uglifyOptions: { 
+        //   // warnings: false,
+        //   sourceMap: true,
+        //  } }),
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
@@ -263,6 +268,22 @@ module.exports = function(webpackEnv) {
       splitChunks: {
         chunks: 'all',
         name: false,
+      //   cacheGroups: {
+      //     commons: {
+      //         chunks: "initial",
+      //         minChunks: 2,
+      //         maxInitialRequests: 5, // The default limit is too small to showcase the effect
+      //         minSize: 0 // This is example is too small to create commons chunks
+      //     },
+      //     vendor: {
+      //         test: /node_modules/,
+      //         chunks: "initial",
+      //         name: "vendor",
+      //         priority: 10,
+      //         enforce: true
+      //     }
+      // }
+        
       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
@@ -513,6 +534,18 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+  //     new webpack.ProvidePlugin({  
+  //       'react': 'React',
+  //        'react-dom': 'ReactDOM'
+
+  //  }),
+  new CompressionPlugin({
+    filename: '[path].gz[query]', // 目标资源名称。[file] 会被替换成原资源。[path] 会被替换成原资源路径，[query] 替换成原查询字符串
+    algorithm: 'gzip', // 算法       
+    test: new RegExp('\\.(js|css)$'), // 压缩 js 与 css
+    threshold: 10240, // 只处理比这个值大的资源。按字节计算
+    minRatio: 0.8 // 只有压缩率比这个值小的资源才会被处理
+}),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
@@ -667,6 +700,7 @@ module.exports = function(webpackEnv) {
       tls: 'empty',
       child_process: 'empty',
     },
+    // externals: { 'react': 'React', 'react-dom': 'ReactDOM'}, // 提出ant design的公共资源, }
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,

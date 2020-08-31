@@ -1,216 +1,123 @@
-var article = require('../../db/article')
-var articleInfo = require('../../db/articleInfo')
-const express = require("express")
-// const articlemessageDB = require("../../db/articlemessage.js")
-
+const express = require('express')
+const articleDB = require("../../db/article");
 let router = express.Router()
-router.post('/getInfo', (req, res) => {
-  // console.log(req.body,'bb');
-    articleInfo.findOne({}, {_id: 0, __v: 0})
-        .then(data => {
-            // console.log(data,444);
-            res.send({
-                code: 0,
-                msg: '请求成功',
-                data
-            })
-        })
-        .catch(() => {
-            res.send({
-                code: 4,
-                msg: '服务器错误',
-                data: null
-            })
-        })
-
-})
-router.post('/getHot', (req, res) => {
-  // console.log(res,'dd');
-    article.find({}, {_id: 0, __v: 0}, {sort: {pv: -1}, skip: 0, limit: 8})
-        .then(data => {
-            // console.log(data,'cc')
-            res.send({
-                code: 0,
-                msg: '请求成功',
-                data
-            })
-        })
-        .catch(() => {
-            res.send({
-                code: 4,
-                msg: "服务器错误",
-                data: null
-            })
-        })
-})
-
-router.get('/getTitle', (req, res) => {
-  // console.log(res,'dd');
-    article.find({})
-        .then(data => {
-            // console.log(data,'cc')
-            res.send({
-                code: 0,
-                msg: '请求成功',
-                data
-            })
-        })
-        .catch(() => {
-            res.send({
-                code: 4,
-                msg: "服务器错误",
-                data: null
-            })
-        })
-})
-
-router.post('/getShow', (req, res) => {
-    let {skip, limit, tag} = req.body
-    let options = tag ? {tag} : {}
-    // console.log(skip, limit, tag,'test');
-// console.log(request,'eee');
-// console.log(req.body,'a!');
-// console.log(date- new Date(),'a@');
-// console.log(article,'a~');
-// let newDate = new Date()
-// console.log(res.db,'b,');
-
-    article.find({$and:[options,{pv:{$lt:1}}]}, {__v:0} ,{skip, limit,sort:{readcount:-1,date:-1}})
-    .then(data => {
-        res.send({
-            code: 0,
-            data,
-
-        })
-    })
-    .catch(err => {
-        res.send({
-            code: 4,
-            msg: '服务器错误'
-        })
-    })
-
-  
-
-   
-})
-
-router.post("/readCount",(req,res)=>{
-  let {articleId,readcount} =req.body
-  console.log(articleId,readcount,'a^');
-  if(!articleId || !readcount){
+router.post('/send', (req, res) => {
+  let { title, type, tag, surface, content, readcount, year, month, day } = req.body;
+  //后端数据验证
+  if (!title || !type ||  !tag || !content || !year || !month || !day ) {
     res.send({
-      code : 1,
-      msg : "数据格式错误"
+      code: 1,
+      msg: "数据不完整",
     });
     return;
-  
   }
+  console.log(req.body,'!!');
 
-  article.updateOne({
-    _id: articleId,
-  },{
-    
-    $set:{readcount}
+  /*数据库存储*/
+  articleDB.create(
+    surface ? { title, type, tag,surface, content,  readcount , year, month, day} : {title, type,  tag, content, readcount,year, month, day }
+  ).then(d => {
+    res.send({
+      code: 0,
+      msg: "发表成功666666!!!!!"
+    })
+  }).catch(() => {
+    res.send({
+      code: 4,
+      msg: "发表失败，请稍后再试"
+    })
   })
-    .then((data)=>{
-      res.send({
-        code : 0,
-        msg : "阅读量加1!",
-        data
-      });
-    })
-    .catch(()=>{
-      res.send({
-        code : 4,
-        msg : "服务器错误~",
-        data:[]
-      });
-    })
-  
 })
 
-router.post("/messageCommit",(req,res)=>{
-    let {articleId,comment} = req.body;
-    // console.log(req.body,'eee')
-   
-// console.log(request,'eee');
+
+router.post('/getShow', (req, res) => {
+  let {skip, limit, tag} = req.body
+  let options = tag ? {tag} : {}
   
-    /*验证数据*/
-    if (!articleId || !comment){
+
+  articleDB.find({$and:[options,{pv:{$lt:1}}]}, {__v:0} ,{skip, limit,sort:{readcount:-1,date:-1}})
+  .then(data => {
       res.send({
-        code : 1,
-        msg : "数据格式错误"
-      });
-      return;
-    }
-    // console.log(article.comment);
-    /*添加评论*/
-    article.updateOne({
-      _id: articleId,
-    },{
-      
-      $push:{comment}
+          code: 0,
+          data,
+
+      })
+  })
+  .catch(err => {
+      res.send({
+          code: 4,
+          msg: '服务器错误'
+      })
+  }) 
+})
+
+router.post('/delete', (req, res) => {
+  console.log(req.body, 'bbb')
+  let title = req.body.title
+  articleDB.deleteOne({ title: title })
+    .then(data => {
+      res.send({
+        code: 'hhh'
+      })
     })
-      .then((data)=>{
-        res.send({
-          code : 0,
-          msg : "留言成功!",
-          data
-        });
+    .catch(err => {
+      res.send({
+        code: 'err'
       })
-      .catch(()=>{
-        res.send({
-          code : 4,
-          msg : "服务器错误~",
-          data:[]
-        });
-      })
+    })
 
-      // article.updateOne({content:'xxx'})
-      // .then(()=>{
-      //   res.send({
-      //     code : 0,
-      //     msg : "留言成功!"
-      //   });
-      // })
-      // .catch(()=>{
-      //   res.send({
-      //     code : 4,
-      //     msg : "服务器错误~"
-      //   });
-      // })
+})
 
-      
-  });
+// router.post('/getShowTitle', (req, res) => {
+//   let { skip, limit, tag } = req.body
+//   let options = tag ? { tag } : {}
+//   // console.log(skip, limit, tag,'test');
 
+//   articleDB.find(options, { __v: 0 }, { skip, limit, sort: { pv: -1 } })
+//     .then(data => {
+//       res.send({
+//         code: 0,
+//         data,
 
-  
+//       })
+//     })
+//     .catch(err => {
+//       res.send({
+//         code: 4,
+//         msg: '服务器错误'
+//       })
+//     })
+// })
 
-      
+// router.post('/edit', (req, res) => {
 
+//   let { type, title, tag, content, surface } = req.body;
+//   // console.log(type, ',,,,,,');
+//   // console.log(req.body,'mmm');
 
-  router.post("/message",(req,res)=>{
-    let {skip,limit} = req.body;
-  
-    /*拿取数据*/
-    article.find({},{},{skip,limit,sort:{date:-1}})
-      .populate({path:"comment",populate:{path:"user"}})
-      .populate({path:"children.comment",populate:{path:"user"}})
-      .then(data=>{
-        res.send({
-          code : 0,
-          msg : "请求成功",
-          data
-        });
-      })
-      .catch(()=>{
-        res.send({
-          code : 4,
-          msg : "服务器错误",
-          data : []
-        });
-      })
-  });
+//   //后端数据验证
+//   if (!type || !title || !tag || !content) {
+//     res.send({
+//       code: 1,
+//       msg: "数据不完整",
+//     });
+//     return;
+//   }
+
+//   /*数据库存储*/
+//   articleDB.updateOne(
+//     surface ? { type, title, tag, content, surface } : { type, title, tag, content }
+//   ).then(d => {
+//     res.send({
+//       code: 0,
+//       msg: "发表成功666666!!!!!"
+//     })
+//   }).catch(() => {
+//     res.send({
+//       code: 4,
+//       msg: "发表失败，请稍后再试"
+//     })
+//   })
+// })
 
 module.exports = router

@@ -69,7 +69,7 @@ class NavBar extends Component {
             }}>
                 {matches => (
 
-                    <div>
+                    <div >
                         {matches.small &&
                              <div className={styles.navMain}>
                              <div className={styles.logo}>FYYD</div>
@@ -85,7 +85,7 @@ class NavBar extends Component {
                          <div className={styles.navMain}>
                          <div className={styles.logo}>FYYD</div>
                          <div className={styles.nav}>
-                             <ul >
+                             <ul  >
                                  <li>
                                      <Link onClick={this.handleRefresh} to={"/"}>首页</Link>
      

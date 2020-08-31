@@ -1,33 +1,52 @@
+// const express = require('express')
+// let router = express.Router()
+
 var express = require('express')
 var router = express.Router()
 const request = require('request')
-router.get("/", (req, res) => {
-    console.log(req.body,'%[');
-    // let { word } = req.query;
-    let word = '中'
-    if (word) {
+
+// console.log(request,'eee');
+
+router.get("/",(req,res)=>{
+ 
+
+    console.log('aaaa');
+    // console.log(req,'iii');
+    let {word} = req.query;
+    console.log(word,'a1');
+    if (word){
         request.get(
-            'https://www.baidu.com/sugrec?prod=pc&wd=' + encodeURI(word) + '&cb=lyj'
-            , (err, a, body) => {
-                if (err) {
+            'https://www.baidu.com/sugrec?prod=pc&wd='+ encodeURI(word)+'&cb=lyj'
+            ,(err,a,body)=>{
+                console.log(err,'c1');
+                if (err){
                     res.send([]);
                     return;
                 }
+                console.log(body,'b1');
                 let str = body.match(/^[\da-z_]+\((.+)\)$/i)[1];
                 str = JSON.parse(str);
-                console.log(str.g,'%=');
-                if (str.g) {
+                if (str.g){
+                    /*let dataArr = [];
+                    str.g.forEach(item=>{
+                        dataArr.push(item.q);
+                    });*/
+                    console.log(str.g,'bbb');
                     res.send(
-                        str.g.map(item => item.q)
+                        str.g.map(item=>item.q)
                     );
-                } else {
+                }else{
                     res.send([]);
                 }
             }
         );
-    } else {
+    }else{
         res.send([]);
     }
 });
+router.get('/focus',(req,res)=>{
+    
+})
 
+// module.exports = router
 module.exports = router

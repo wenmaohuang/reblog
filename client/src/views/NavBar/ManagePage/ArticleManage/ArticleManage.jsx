@@ -1,145 +1,256 @@
+import React, {useContext, useState, useEffect, useRef} from 'react';
+import {Table, Input, Button, Popconfirm, Form} from 'antd';
 
-import React from "react";
-import styles from "./ArticleManage.module.scss";
-import { Table, Tag, Radio, Space } from 'antd';
+import store from "../../../../store";
+import api from "../../../../api"
 
+const postArticleDel = api.postArticleDel
 
+const EditableContext = React.createContext();
 
-const topOptions = [
-    { label: 'topLeft', value: 'topLeft' },
-    { label: 'topCenter', value: 'topCenter' },
-    { label: 'topRight', value: 'topRight' },
-    { label: 'none', value: 'none' },
-  ];
-  
-  const bottomOptions = [
-    { label: 'bottomLeft', value: 'bottomLeft' },
-    { label: 'bottomCenter', value: 'bottomCenter' },
-    { label: 'bottomRight', value: 'bottomRight' },
-    { label: 'none', value: 'none' },
-  ];
-  
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: tags => (
-        <span>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </span>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Space>
-      ),
-    },
-  ];
-  
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-  ];
-  
+const EditableRow = ({index, ...props}) => {
+    const [form] = Form.useForm();
+    return (
+        <Form form={form} component={false}>
+            <EditableContext.Provider value={form}>
+                <tr {...props} />
+            </EditableContext.Provider>
+        </Form>
+    );
+};
 
-class ArticleManage extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    state = {
-        top: 'topLeft',
-        bottom: 'bottomRight',
-      };
-      componentWillReceiveProps(nextProps){
-        let key = nextProps.match.params.key;
-        console.log(nextProps.location.pathname,'{!');
-        console.log(this.props.location.pathname,'{@');
-        
-        this.setState({
-            key:key
-        })
-}
-    render() {
-        return (
-          <div>
-            <div>
-              <Radio.Group
-                style={{ marginBottom: 10 }}
-                options={topOptions}
-                value={this.state.top}
-                onChange={e => {
-                  this.setState({ top: e.target.value });
+const EditableCell = ({
+                          title,
+                          editable,
+                          children,
+                          dataIndex,
+                          record,
+                          handleSave,
+                          ...restProps
+                      }) => {
+    const [editing, setEditing] = useState(false);
+    const inputRef = useRef();
+    const form = useContext(EditableContext);
+    useEffect(() => {
+        if (editing) {
+            inputRef.current.focus();
+        }
+    }, [editing]);
+
+    const toggleEdit = () => {
+        setEditing(!editing);
+        form.setFieldsValue({
+            [dataIndex]: record[dataIndex],
+        });
+    };
+
+    const save = async e => {
+        try {
+            const values = await form.validateFields();
+            toggleEdit();
+            handleSave({...record, ...values});
+        } catch (errInfo) {
+            console.log('Save failed:', errInfo);
+        }
+    };
+
+    let childNode = children;
+
+    if (editable) {
+        childNode = editing ? (
+            <Form.Item
+                style={{
+                    margin: 0,
                 }}
-              />
+                name={dataIndex}
+                rules={[
+                    {
+                        required: true,
+                        message: `${title} is required.`,
+                    },
+                ]}
+            >
+                <Input ref={inputRef} onPressEnter={save} onBlur={save}/>
+            </Form.Item>
+        ) : (
+            <div
+                className="editable-cell-value-wrap"
+                style={{
+                    paddingRight: 24,
+                }}
+                onClick={toggleEdit}
+            >
+                {children}
             </div>
-            <Radio.Group
-              style={{ marginBottom: 10 }}
-              options={bottomOptions}
-              value={this.state.bottom}
-              onChange={e => {
-                this.setState({ bottom: e.target.value });
-              }}
-            />
-            <Table
-              columns={columns}
-              pagination={{ position: [this.state.top, this.state.bottom] }}
-              dataSource={data}
-            />
-          </div>
         );
-      }  
+    }
+
+    return <td {...restProps}>{childNode}</td>;
+};
+
+
+class ArticleManage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.columns = [
+            {
+                title: 'title',
+                dataIndex: 'title',
+                width: '30%',
+                editable: true,
+            },
+            {
+                title: 'type',
+                dataIndex: 'type',
+            },
+            {
+                title: 'tag',
+                dataIndex: 'tag',
+            },
+            {
+                title: 'content',
+                dataIndex: 'content',
+            },
+            {
+                title: 'operation',
+                dataIndex: 'operation',
+                render: (text, record) =>
+                    this.state.dataSource.length >= 1 ? (
+                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.title)}>
+                            <a>Delete</a>
+                        </Popconfirm>
+                    ) : null,
+            },
+        ];
+        this.state = {
+            dataSource: [
+                {
+                    key: '0',
+                    title: 'Edward King 0',
+                    type: '',
+                    tag: '32',
+                    content: 'London, Park Lane no. 0',
+                },
+                {
+                    key: '1',
+                    title: 'Edward King 1',
+                    type: '',
+                    tag: '32',
+                    content: 'London, Park Lane no. 1',
+                },
+            ],
+            count: 2,
+        };
+
+    }
+
+    componentDidMount() {
+
+
+        console.log(this.state, '56');
+        console.log(store.getState(), '67');
+
+    }
+
+    handleDelete = title => {
+
+        console.log(title, 'io');
+        postArticleDel({title})
+            .then((req) => {
+
+                console.log(req, 'ui');
+            })
+            .catch(err => {
+                console.log(err,'op');
+
+            })
+        // const dataSource = [...this.state.dataSource];
+        // this.setState({
+        //     dataSource: dataSource.filter(item => item.key !== key),
+        // });
+    };
+
+    handleAdd = () => {
+        const {count, dataSource} = this.state;
+        const newData = {
+            key: count,
+            title: `Edward King ${count}`,
+            type: '',
+            tag: 32,
+            content: `London, Park Lane no. ${count}`,
+        };
+        this.setState({
+            dataSource: [...dataSource, newData],
+            count: count + 1,
+        });
+    };
+
+    handleSave = row => {
+        const newData = [...this.state.dataSource];
+        const index = newData.findIndex(item => row.key === item.key);
+        const item = newData[index];
+        newData.splice(index, 1, {...item, ...row});
+        this.setState({
+            dataSource: newData,
+        });
+    };
+
+    render() {
+
+        console.log(this.state, '-=');
+        const {article, articleOption} = store.getState()
+        console.log(article, '=q');
+        console.log(articleOption, '=q');
+
+        console.log(store.getState(), '78')
+        const {dataSource} = this.state;
+        const components = {
+            body: {
+                row: EditableRow,
+                cell: EditableCell,
+            },
+        };
+        const columns = this.columns.map(col => {
+            if (!col.editable) {
+                return col;
+            }
+
+            return {
+                ...col,
+                onCell: record => ({
+                    record,
+                    editable: col.editable,
+                    dataIndex: col.dataIndex,
+                    title: col.title,
+                    handleSave: this.handleSave,
+                }),
+            };
+        });
+        return (
+            <div>
+                <Button
+                    onClick={this.handleAdd}
+                    type="primary"
+                    style={{
+                        marginBottom: 16,
+                    }}
+                >
+                    Add a row
+                </Button>
+                <Table
+                    components={components}
+                    rowClassName={() => 'editable-row'}
+                    bordered
+                    dataSource={article}
+                    columns={columns}
+                />
+            </div>
+        );
+    }
+
+
 }
+
 export default ArticleManage;
 
 

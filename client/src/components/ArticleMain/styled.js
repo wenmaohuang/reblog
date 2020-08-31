@@ -10,7 +10,7 @@ box-sizing: border-box;
 height: 450px;
 width: 100%;
 margin-bottom: 20px;
-padding: 0 20px;
+padding-left:20px;
 background-color: #fff;
 `
 const Head = styled.div

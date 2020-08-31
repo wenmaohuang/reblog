@@ -30,9 +30,9 @@ export default {
     // getArticleTitle() {
     //     return axios.post('/article/getShowTitle')
     // },
-    // postArticleDel({ title }) {
-    //     return axios.post('/article/delete', { title })
-    // },
+    postArticleDel({ title }) {
+        return axios.post('/article/delete', { title })
+    },
     // postArticleUpdate({ type, title, tag, content }) {
     //     return axios.post('/article/edit', { type, title, tag, content })
     // },

@@ -1,10 +1,10 @@
-// const mongoose = require("./connect")
+const mongoose = require("./connect")
 // const dailyDB = require('./daily')
-const mongoose = require("./connection/connection")
 
 let Schema = mongoose.Schema;
 let dailySchema = new Schema({
   content : {type: String,required: true},
+  time: {type:String,require: true}
 })
 let daily = mongoose.model("daily",dailySchema);
 

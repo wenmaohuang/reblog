@@ -11,6 +11,7 @@ import ArticleMain from '../../../components/ArticleMain/ArticleMain';
 
 // <Route  path="/nav/:id" component={NavBar} />
 import Media from 'react-media';
+import pic2 from '../../../static/img/2.jpg'
 
 class BlogPage extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class BlogPage extends React.Component {
       }}>
           {matches => (
 
-              <div>
+              <div className="main" style={{backgroundImage:`url(${pic2})`}}>
                   {matches.small &&
                       <div className={styles.container}>
                       <ArticleMain {...this.props}></ArticleMain>        

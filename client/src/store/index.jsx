@@ -1,10 +1,9 @@
 import {applyMiddleware,combineReducers,createStore} from 'redux'
-import reducer from './reducer.jsx'
-// import createLogger from 'redux-logger';
-import thunk from 'redux-thunk';
-// const logger = createLogger();
+import {reduceArticle} from './reducer.jsx'
 
-const store = createStore(reducer,
+import thunk from 'redux-thunk';
+
+const store = createStore(reduceArticle,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(thunk),
     

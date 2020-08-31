@@ -22,7 +22,7 @@ class ArticleSearch extends Component {
     }
     render() {
         return (
-            <div onClick={(e) => this.handleBlurSearchTitle(e)} className="search-main">
+            <div onClick={(e) => this.handleBlurSearchTitle(e)} className="search-main" >
                 <input
                     type="text"
                     v-model="word"

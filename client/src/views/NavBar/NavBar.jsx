@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import styles from "./NavBar.module.scss";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route,withRouter, Switch, Link } from "react-router-dom";
 import BlogPage from "./BlogPage"
 import ManagePage from "./ManagePage"
 
@@ -144,4 +144,4 @@ class NavBar extends Component {
 
 
 
-export default NavBar;
+export default withRouter(NavBar);

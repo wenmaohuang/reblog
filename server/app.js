@@ -28,7 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 // app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.get('*', function (request, response){
+    response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
+})
 app.use((req, res, next) => {
     res.header({
         'Access-Control-Allow-Credentials': true,

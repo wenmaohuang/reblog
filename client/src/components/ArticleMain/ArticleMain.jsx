@@ -21,7 +21,7 @@ class ArticleMain extends React.Component {
             var article = store.getState().articleOption.map((item, index) => {
                 let content = item.content.blocks.map((item, index) => {
                     return (
-                        <p key={index}>{item.text}</p>
+                        <p  key={index}>{item.text}</p>
                     )
                 })
                 return (
@@ -41,11 +41,11 @@ class ArticleMain extends React.Component {
                                     </div>
                                 </Time>
                             </Head>
-                            <div className="content">
+                            <div style={{display:'flex'}} className="content">
                                 <router-link className='img' to="/content">
-                                    <img src="" onClick={this.handleArticleList(this.item)} />
+                                    <img style={{width:'250px',padding:'10px',height:'160px'}} src="http://www.fyyd.vip:3001/img/upload/article/4.jpg" onClick={this.handleArticleList(this.item)} />
                                 </router-link>
-                                <router-link className='p' to="/content">
+                                <router-link style={{width:'500px' ,padding:'10px',height:'300px',overflow:'hidden'}} className='p' to="/content">
                                     {content}
 
                                     {/* <p onClick={this.handleArticleList(this.item)}>{item.content}</p> */}

@@ -7,11 +7,10 @@ const path = require("path");
 const name = process.argv[2];
 // const rootPath = process.env.INIT_CWD;
 const rootPath = process.mainModule.path;
-fs.mkdirSync(path.join(rootPath,`/${name}`));
+fs.mkdirSync(path.join(rootPath, `/${name}`));
 
 const jsxContent1 = `
 import React from "react";
-import styles from "./${name}.module.scss";
 
 class ${name} extends React.Component{
     constructor(props){
@@ -20,31 +19,32 @@ class ${name} extends React.Component{
 
     render(){
         return (
-            <div className={styles.main}></div>
+            <div>
+            </div>
         )
     }   
 }
 export default ${name};
 `
-const jsxContent2 = `
-import ${name} from './${name}'
-export default ${name}
-`
+// const jsxContent2 = `
+// import ${name} from './${name}'
+// export default ${name}
+// `
 
-const scssContent = `
-.main{
-
-}
-`
+// const scssContent = `
+// .main{
+//
+// }
+// `
 const styledContent = `
 
 `
 
 
-fs.writeFileSync(path.join(rootPath,`/${name}/${name}.jsx`),jsxContent1);
-fs.writeFileSync(path.join(rootPath,`/${name}/index.jsx`),jsxContent2)
-fs.writeFileSync(path.join(rootPath,`/${name}/${name}.module.scss`),scssContent);
-fs.writeFileSync(path.join(rootPath,`/${name}/styled.js`),styledContent);
+fs.writeFileSync(path.join(rootPath, `/${name}/index.jsx`), jsxContent1);
+// fs.writeFileSync(path.join(rootPath,`/${name}/index.jsx`),jsxContent2)
+// fs.writeFileSync(path.join(rootPath,`/${name}/${name}.module.scss`),scssContent);
+fs.writeFileSync(path.join(rootPath, `/${name}/styled.js`), styledContent);
 
 console.log(`create file ${name} success`);
 

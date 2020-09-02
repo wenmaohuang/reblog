@@ -7,7 +7,7 @@ import ArticleTop from '../../../components/ArticleTop/ArticleTop';
 import Visitor from '../../../components/Visitor/Visitor';
 import ArticleMain from '../../../components/ArticleMain/ArticleMain';
 // import NavBar from "./views/NavBar"
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route,withRouter, Switch } from "react-router-dom";
 
 // <Route  path="/nav/:id" component={NavBar} />
 import Media from 'react-media';
@@ -56,4 +56,4 @@ class BlogPage extends React.Component {
     )
   }
 }
-export default BlogPage
+export default withRouter(BlogPage)

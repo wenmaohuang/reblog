@@ -91,5 +91,5 @@ const mapActionsToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapActionsToProps)(withRouter(App));
+export default withRouter(connect(mapStateToProps, mapActionsToProps)(App));
 // export default withRouter(App);

@@ -9,12 +9,16 @@ import {connect} from "react-redux";
 class Index extends React.Component {
     constructor(props) {
         super(props);
-        this.props.getArticleOption()
+
 
     }
 
     componentDidMount() {
+
         console.log(this.props, 'kl');
+
+        console.log(store.getState(),'zx');
+
 
 
     }
@@ -23,6 +27,10 @@ class Index extends React.Component {
         this.props.history.push('/nav/article')
         this.props.getArticleDetail(item)
     }
+
+    // onClick={this.goToUrl.bind(this, item)}
+
+
 
     render() {
         console.log(this.props, ';z');
@@ -59,11 +67,17 @@ class Index extends React.Component {
                                         </Time>
                                     </Head>
 
-                                    <a onClick={this.goToUrl.bind(this, item)} style={{display: 'flex',}} className="content">
+                                    <a onClick={this.goToUrl.bind(this, item)} style={{display: 'flex',}}
+                                       className="content">
                                         <img style={{width: '250px', padding: '10px', height: '160px'}}
                                              src="http://www.fyyd.vip:3001/img/upload/article/4.jpg"
                                         />
-                                        <div style={{width: '500px', padding: '10px', height: '300px', overflow: 'hidden'}}>
+                                        <div style={{
+                                            width: '500px',
+                                            padding: '10px',
+                                            height: '300px',
+                                            overflow: 'hidden'
+                                        }}>
                                             {content}
                                         </div>
                                     </a>

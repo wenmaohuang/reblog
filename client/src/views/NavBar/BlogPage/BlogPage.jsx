@@ -23,7 +23,7 @@ class BlogPage extends React.Component {
 
             <div>
                 <div className={styles.container}>
-                     <Index {...this.props}></Index>
+                     <Index></Index>
                      <div className={styles.sidebar}>
                      <ArticleSearch></ArticleSearch>
                      <ArticleSelect></ArticleSelect>

@@ -1,18 +1,9 @@
 import React from "react";
 import store from "../../store";
 import {
-    Flex,
-    Footer,
-    Head,
-    Iconfont,
+
     Main,
-    P,
-    Reader,
-    ReaderSpan,
-    Section,
-    Tag,
-    TagSpan,
-    Time
+
 } from "../ArticleMain/styled";
 import {BrowserRouter as Router} from "react-router-dom";
 
@@ -24,7 +15,7 @@ class ArticleDetail extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props,'l;');
+        console.log(this.props, 'l;');
 
     }
 

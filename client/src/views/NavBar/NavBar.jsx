@@ -11,6 +11,7 @@ import ArticleDetail from '../../components/ArticleDetail'
 import Button from 'antd/lib/button'
 import 'antd/dist/antd.css'
 import LoginPage from "../../components/LoginPage";
+import MessagePage from "../../components/MessagePage"
 
 
 class NavBar extends Component {
@@ -35,7 +36,11 @@ class NavBar extends Component {
     handlerLogin() {
         console.log('');
     }
-
+    componentWillUnmount = () => {
+        this.setState = (state, callback) => {
+            return;
+        };
+    }
 
       componentDidMount(){
     
@@ -97,7 +102,7 @@ class NavBar extends Component {
                                      <Link to="/nav/manage">管理</Link>
                                  </li>
                                  <li>
-                                     <Link to="/message">留言</Link>
+                                     <Link to="/nav/message">留言</Link>
                                  </li>
                                  <li>
                                      <Link to="/daily">日记</Link>
@@ -131,6 +136,7 @@ class NavBar extends Component {
                     <Route   path="/nav/blog" component={BlogPage} />
                     <Route   path="/nav/article" component={ArticleDetail} />
                     <Route  path="/nav/manage" component={ManagePage} />
+                    <Route path="/nav/message" component={MessagePage}/>
                 </Switch>
 
             </Router>

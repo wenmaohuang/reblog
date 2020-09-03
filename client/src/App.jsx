@@ -39,7 +39,7 @@ class App extends Component {
 
     componentDidMount() {
 
-        // this.props.getArticleOption()
+        this.props.getArticleOption()
 
 
     }

@@ -39,9 +39,7 @@ class App extends Component {
 
     componentDidMount() {
 
-        // this.props.getArticle()
-        this.props.getArticleOption()
-        console.log(this.props,'wee');
+        // this.props.getArticleOption()
 
 
     }

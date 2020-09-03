@@ -2,7 +2,6 @@ import React from "react";
 import {Main, Section, Head, Time, P, Footer, Flex, Tag, TagSpan, Reader, Iconfont, ReaderSpan} from "./styled"
 import store from '../../store/index'
 import {BrowserRouter as Router, Redirect, Route, Switch, Link, withRouter} from "react-router-dom";
-import ArticleDetail from "../ArticleDetail"
 import {bindActionCreators} from "redux";
 import {getArticleDetail, getArticleOption} from "../../store/action";
 import {connect} from "react-redux";
@@ -10,30 +9,17 @@ import {connect} from "react-redux";
 class Index extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            // test: {}
-        }
     }
-
-
     componentDidMount() {
+        this.props.getArticleOption()
 
     }
-
-    goToUrl (item) {
+    goToUrl(item) {
         this.props.history.push('/nav/article')
-
         this.props.getArticleDetail(item)
-
-
     }
-
-
-
     render() {
-        // console.log(store.getState(), '1!');
         if (store.getState().articleOption) {
-            console.log("!@#");
             var article = store.getState().articleOption.map((item, index) => {
                 let content = item.content.blocks.map((item, index) => {
                     return (
@@ -41,7 +27,6 @@ class Index extends React.Component {
                     )
                 })
                 return (
-                    // <p>{item.title}+aaa</p>
                     <div key={index} style={{backgroundColor: 'transparent', padding: '0 20px'}}>
                         <Section>
                             <Head>
@@ -58,17 +43,13 @@ class Index extends React.Component {
                                 </Time>
                             </Head>
 
-                            <a onClick={this.goToUrl.bind(this,item)} style={{display: 'flex',}} className="content">
+                            <a onClick={this.goToUrl.bind(this, item)} style={{display: 'flex',}} className="content">
                                 <img style={{width: '250px', padding: '10px', height: '160px'}}
                                      src="http://www.fyyd.vip:3001/img/upload/article/4.jpg"
-                                     // onClick={this.handleArticleList(this.item)}
-                                    />
+                                />
                                 <div style={{width: '500px', padding: '10px', height: '300px', overflow: 'hidden'}}>
                                     {content}
-
                                 </div>
-
-
                             </a>
                             <Footer>
                                 <Flex>
@@ -89,15 +70,11 @@ class Index extends React.Component {
 
 
         return (
-
             <Router>
                 <Main>
-
                     {article}
                 </Main>
-
             </Router>
-
         )
     }
 }
@@ -112,7 +89,7 @@ const mapStateToProps = (state) => {
 const mapActionsToProps = (dispatch) => {
     return {
 
-        ...bindActionCreators({getArticleOption,getArticleDetail},dispatch)
+        ...bindActionCreators({getArticleOption, getArticleDetail}, dispatch)
     }
 }
 

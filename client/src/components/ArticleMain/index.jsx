@@ -10,14 +10,19 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
     }
+
     componentDidMount() {
         this.props.getArticleOption()
+        console.log(this.props);
+
 
     }
+
     goToUrl(item) {
         this.props.history.push('/nav/article')
         this.props.getArticleDetail(item)
     }
+
     render() {
         if (store.getState().articleOption) {
             var article = store.getState().articleOption.map((item, index) => {

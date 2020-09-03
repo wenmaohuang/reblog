@@ -65,6 +65,9 @@ class SearchInfo extends React.Component {
             )
         })
     }
+    componentWillUnmount() {
+        this.setState = ()=>false;
+    }
 
     render() {
 

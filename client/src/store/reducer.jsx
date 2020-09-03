@@ -40,7 +40,7 @@ export function reduceArticle(state = defaultState, action) {
 
             return {...state, articleOption: action.value, article: newState}
         case 'GET_ARTICLE_DETAIL':
-            console.log(action,'fg');
+            // console.log(action,'fg');
             return {
                 ...state, articleDetail: action
             }

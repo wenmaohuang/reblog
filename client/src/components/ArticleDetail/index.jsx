@@ -24,6 +24,7 @@ class ArticleDetail extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props,'l;');
 
     }
 
@@ -75,7 +76,7 @@ class ArticleDetail extends React.Component {
                             </div>
                         </div>
 
-                        <div >
+                        <div>
                             {content}
 
                         </div>

@@ -5,11 +5,10 @@ import ArticleSelect from '../../../components/ArticleSelect/ArticleSelect';
 import ArticleHot from '../../../components/ArticleHot/ArticleHot';
 import ArticleTop from '../../../components/ArticleTop/ArticleTop';
 import Visitor from '../../../components/Visitor/Visitor';
-import ArticleMain from '../../../components/ArticleMain/ArticleMain';
+import Index from '../../../components/ArticleMain';
 // import NavBar from "./views/NavBar"
 import { BrowserRouter as Router, Route,withRouter, Switch } from "react-router-dom";
 
-// <Route  path="/nav/:id" component={NavBar} />
 import Media from 'react-media';
 import pic2 from '../../../static/img/2.jpg'
 
@@ -23,7 +22,6 @@ class BlogPage extends React.Component {
      
         <Media queries={{
           small: "(max-width: 499px)",
-          // medium: "(min-width: 600px) and (max-width: 1199px)",
           large: "(min-width: 500px)"
       }}>
           {matches => (
@@ -31,15 +29,14 @@ class BlogPage extends React.Component {
               <div className="main" style={{backgroundImage:`url(${pic2})`}}>
                   {matches.small &&
                       <div className={styles.container}>
-                      <ArticleMain {...this.props}></ArticleMain>        
+                      <Index {...this.props}></Index>
                      
               
                     </div>
                   }
-                  {/* {matches.medium && <p>I am medium!</p>} */}
-                  {matches.large && 
+                  {matches.large &&
                     <div className={styles.container}>
-                    <ArticleMain {...this.props}></ArticleMain>        
+                    <Index {...this.props}></Index>
                     <div className={styles.sidebar}>
                       <ArticleSearch></ArticleSearch>
                       <ArticleSelect></ArticleSelect>

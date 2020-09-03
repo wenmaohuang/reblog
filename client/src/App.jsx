@@ -15,7 +15,7 @@ import store from './store/index.jsx'
 import BlogPage from "./views/NavBar/BlogPage"
 
 
-import {getArticle, getArticleOption} from './store/action'
+import { getArticleOption,getArticleDetail} from './store/action'
 // import getArticleOption from './store/articleOptionAction'
 
 
@@ -41,7 +41,7 @@ class App extends Component {
 
         // this.props.getArticle()
         this.props.getArticleOption()
-        console.log(this.props,'we');
+        console.log(this.props,'wee');
 
 
     }
@@ -62,7 +62,7 @@ class App extends Component {
 
 
                     <Route path="/nav" component={NavBar}/>
-                    <Route path="/nav/manage/:id" component={ManagePage}/>
+                    {/*<Route path="/nav/manage/:id" component={ManagePage}/>*/}
                 </Switch>
             </Router>
         )
@@ -73,20 +73,14 @@ const mapStateToProps = (state) => {
     return {
         articleOption: state.articleOption,
         article: state.article,
+        articleDetail:state.articleDetail
     }
 }
 
 const mapActionsToProps = (dispatch) => {
     return {
-        // getArticleOption: (data) => {
-        //     dispatch(getArticleOption(data))
-        //
-        // },
-        // getArticle: (data) => {
-        //     dispatch(getArticle(data))
-        //
-        // },
-      ...bindActionCreators({getArticleOption,getArticle},dispatch)
+
+      ...bindActionCreators({getArticleOption,getArticleDetail},dispatch)
     }
 }
 

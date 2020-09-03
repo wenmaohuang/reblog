@@ -20,22 +20,20 @@ export const getArticleOption = () => {
     }
 }
 
-export const getArticle = () => {
-
-    let action = (val) => ({
-        type: "GET_ARTICLE",
-        value: val
-    })
-    return (dispatch, getState) => {
-        getArticleShow()
-            .then((req, res) => {
-                const data = req.data.data
-                dispatch(action(data))
-            })
-            .catch(e => {
-                console.log(e);
-            })
+export const getArticleDetail = (articleDetail) => {
+    let action = {
+        type: "GET_ARTICLE_DETAIL",
+        articleDetail:articleDetail
     }
+    return action
 }
+// export const getArticleDetail = (e) => {
+//
+//     return {
+//         type: "GET_ARTICLE_DETAIL",
+//     }
+//
+//
+// }
 
 

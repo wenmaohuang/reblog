@@ -6,7 +6,7 @@ import BlogPage from "./BlogPage"
 import ManagePage from "./ManagePage"
 
 import Media from 'react-media';
-
+import ArticleDetail from '../../components/ArticleDetail'
 
 import Button from 'antd/lib/button'
 import 'antd/dist/antd.css'
@@ -109,6 +109,7 @@ class NavBar extends Component {
                                  <li>
                                      <Link to="/about">关于</Link>
                                  </li>
+
                              </ul>
                          </div>
                          <div className={styles.login}>
@@ -125,11 +126,10 @@ class NavBar extends Component {
 
                 <Switch>
                     
-                    {/* <Route  path="/nav" component={BlogPage} /> */}
-            {/* <Route   path="/nav/:id" component={NavBar} /> */}
-                    
-                    <Route exact  path="/nav" component={BlogPage} />
-                    <Route exact  path="/nav/blog" component={BlogPage} />
+
+
+                    <Route   path="/nav/blog" component={BlogPage} />
+                    <Route   path="/nav/article" component={ArticleDetail} />
                     <Route  path="/nav/manage" component={ManagePage} />
                 </Switch>
 

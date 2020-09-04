@@ -8,6 +8,8 @@ import { getArticleOption,getArticleDetail} from './store/action'
 import VConsole from 'vconsole'
 import api from './api/index'
 import {bindActionCreators} from "redux";
+
+
 var vConsole = new VConsole();
 const getArticleShow = api.getArticleShow
 class App extends Component {

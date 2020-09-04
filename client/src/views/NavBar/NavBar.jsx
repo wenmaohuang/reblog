@@ -12,7 +12,7 @@ import Button from 'antd/lib/button'
 import 'antd/dist/antd.css'
 import LoginPage from "../../components/LoginPage";
 import MessagePage from "../../components/MessagePage"
-
+// require("../../static/font/")
 
 class NavBar extends Component {
 

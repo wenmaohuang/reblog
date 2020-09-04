@@ -1,10 +1,10 @@
 import React from "react";
 import store from "../../store";
-import {
+// import {
 
-    Main,
+    // Main,
 
-} from "../ArticleMain/styled";
+// } from "../ArticleMain/styled";
 import {BrowserRouter as Router} from "react-router-dom";
 
 
@@ -40,7 +40,7 @@ class ArticleDetail extends React.Component {
         return (
 
             <Router>
-                <Main>
+                <div>
 
                     <div className="detail"
                          style={{width: '1260px', backgroundColor: '#aaa'}}>
@@ -73,7 +73,7 @@ class ArticleDetail extends React.Component {
                         </div>
                     </div>
 
-                </Main>
+                </div>
 
             </Router>
 

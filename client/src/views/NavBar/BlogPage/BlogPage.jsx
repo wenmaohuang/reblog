@@ -11,62 +11,44 @@ import {BrowserRouter as Router, Route, withRouter, Switch} from "react-router-d
 
 import Media from 'react-media';
 import pic2 from '../../../static/img/2.jpg'
+import styled from 'styled-components'
 
 class BlogPage extends React.Component {
     constructor(props) {
         super(props)
-        // console.log('!@');
     }
 
+
     render() {
+
+
         return (
 
-            <div>
-                <div className={styles.container}>
-                     <Index></Index>
-                     <div className={styles.sidebar}>
-                     <ArticleSearch></ArticleSearch>
-                     <ArticleSelect></ArticleSelect>
-                     <ArticleTop></ArticleTop>
-                     <ArticleHot></ArticleHot>
-                     <Visitor></Visitor>
-                     </div>
+
+            <Media queries={{
+                small: "(max-width: 499px)", large: "(min-width: 500px)"
+            }}>
+                {matches => (
+
+                    <div className="main" style={{width:'100%',backgroundImage: `url(${pic2})`}}>
+                        {matches.small && <div style={{display: 'flex', width: '100%', margin: '0 auto', paddingTop: '20px'}}>
+                            <Index {...this.props}></Index>
 
 
-                </div>
-            </div>
+                        </div>}
+                        {matches.large && <div style={{display: 'flex', width: '100%', margin: '0 auto', paddingTop: '20px'}}>
+                            <Index {...this.props}></Index>
+                            <div style={{width: '300px'}}>
+                                <ArticleSearch></ArticleSearch>
+                                <ArticleSelect></ArticleSelect>
+                                <ArticleTop></ArticleTop>
+                                <ArticleHot></ArticleHot>
+                                <Visitor></Visitor>
+                            </div>
 
-            //   <Media queries={{
-            //     small: "(max-width: 499px)",
-            //     large: "(min-width: 500px)"
-            // }}>
-            //     {matches => (
-            //
-            //         <div className="main" style={{backgroundImage:`url(${pic2})`}}>
-            //             {matches.small &&
-            //                 <div className={styles.container}>
-            //                 <Index {...this.props}></Index>
-            //
-            //
-            //               </div>
-            //             }
-            //             {matches.large &&
-            //               <div className={styles.container}>
-            //               <Index {...this.props}></Index>
-            //               <div className={styles.sidebar}>
-            //                 <ArticleSearch></ArticleSearch>
-            //                 <ArticleSelect></ArticleSelect>
-            //                 <ArticleTop></ArticleTop>
-            //                 <ArticleHot></ArticleHot>
-            //                 <Visitor></Visitor>
-            //               </div>
-            //
-            //             </div>
-            //             }
-            //         </div>
-            //     )}
-            // </Media>
-        )
+                        </div>}
+                    </div>)}
+            </Media>)
     }
 }
 

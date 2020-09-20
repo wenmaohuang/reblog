@@ -43,7 +43,7 @@ class ArticleDetail extends React.Component {
                 <div>
 
                     <div className="detail"
-                         style={{width: '1260px', backgroundColor: '#aaa'}}>
+                         style={{width: '1260px',margin:'0 auto', backgroundColor: '#aaa'}}>
                         <div className="head">
                             <div className="title">
                                 <h5>

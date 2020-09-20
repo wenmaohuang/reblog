@@ -42,7 +42,7 @@ const styledContent = `
 
 
 fs.writeFileSync(path.join(rootPath, `/${name}/index.jsx`), jsxContent1);
-// fs.writeFileSync(path.join(rootPath,`/${name}/index.jsx`),jsxContent2)
+// fs.writeFileSync(path.join(rootPath,`/${name}/ArticleSend.jsx`),jsxContent2)
 // fs.writeFileSync(path.join(rootPath,`/${name}/${name}.module.scss`),scssContent);
 fs.writeFileSync(path.join(rootPath, `/${name}/styled.js`), styledContent);
 

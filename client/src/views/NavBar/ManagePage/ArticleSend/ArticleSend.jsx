@@ -138,6 +138,8 @@ class ArticleSend extends Component {
         
         console.log(this, '&!');
         return (
+
+
             <Form className="basic"
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 50px', width: '100%' }}
             >
@@ -154,7 +156,7 @@ class ArticleSend extends Component {
                     <Select value={this.state.formData.type} ref={(selectA) => { this.selectA = selectA}}>
                         <Option value="原创">原创</Option>
                         <Option value="转载">转载</Option>
-                        
+
                     </Select>
                 </Form.Item>
                 <Form.Item name="标签" label="标签" rules={[{ required: true, },]}
@@ -164,7 +166,7 @@ class ArticleSend extends Component {
                     <Select value={this.state.formData.tag} ref={(selectB) => { this.selectB = selectB}}>
                         <Option value="CSS">CSS</Option>
                         <Option value="HTML">HTML</Option>
-                        
+
                         <Option value="JavaScript">JavaScript</Option>
                         <Option value="NodeJS">NodeJS</Option>
                         <Option value="MongoDB">MongoDB</Option>
@@ -183,10 +185,10 @@ class ArticleSend extends Component {
                             editorState={this.state.editorState}
                             onToggle={this.toggleInlineStyle}
                         />
-                        <div  onMouseEnter={this.focus} onClick={this.focus} className="editor" 
+                        <div  onMouseEnter={this.focus} onClick={this.focus} className="editor"
                             style={{ height: '100%', padding: '10px' }}
                         >
-                            <Editor 
+                            <Editor
                                 customStyleMap={this.state.styleMap}
                                 editorState={this.state.editorState}
                                 onChange={this.onChange}

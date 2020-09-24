@@ -10,8 +10,9 @@ class SearchUrl extends React.Component {
         super(props);
 
         this.urlList = {
+            bilibiliFlutter:"https://www.bilibili.com/video/BV1S4411E7LY?p=4",
             ant: "https://ant.design/components/divider/",
-            bilibiligulp: "https://www.bilibili.com/video/BV1D4411P7tx?p=3",
+            bilibiliGulp: "https://www.bilibili.com/video/BV1D4411P7tx?p=3",
             github: "https://github.com/",
 
             mongoosejs: "https://mongoosejs.com/docs/guide.html",
@@ -53,7 +54,7 @@ class SearchUrl extends React.Component {
                 "https://developers.weixin.qq.com/miniprogram/en/dev/framework/",
             weixinAdmin:
                 "https://mp.weixin.qq.com/wxamp/wacodepage/getcodepage?token=174094833&lang=zh_CN",
-            bilibiliweixin: "https://www.bilibili.com/video/BV1nE41117BQ?p=9",
+            bilibiliWeixin: "https://www.bilibili.com/video/BV1nE41117BQ?p=9",
             movie: "http://27k.cc/?m=vod-play-id-37805-src-1-num-1.html",
             flutter: "https://flutter.dev/docs/development/tools/android-studio",
             typescript: "https://www.typescriptlang.org/docs/handbook/gulp.html",
@@ -78,7 +79,7 @@ class SearchUrl extends React.Component {
             mdn: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
             threejs: "http://www.webgl3d.cn/",
             bootCDN: "https://www.bootcdn.cn/",
-            bilibiliangualar:
+            bilibiliAngualar:
                 "https://www.bilibili.com/video/BV1bt411e71b?from=search&seid=15562787847422779010",
             angularcn: "https://angular.cn/tutorial/toh-pt3",
             angulartantui:

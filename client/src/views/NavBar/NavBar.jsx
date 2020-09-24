@@ -14,6 +14,7 @@ import MessagePage from "../../components/MessagePage"
 // require("../../static/font/")
 import ArticleSend from './ManagePage/ArticleSend/ArticleSend'
 import NavMenu from "../../components/NavMenu";
+import Football from "../Football/Football";
 
 class NavBar extends Component {
 
@@ -104,7 +105,8 @@ class NavBar extends Component {
             <Switch>
                 <Route path="/nav/blog" component={BlogPage}/>
                 <Route path="/nav/article" component={ArticleDetail}/>
-                <Route path="/nav/articleSend" component={ArticleSend}/>
+                {/*<Route path="/nav/articleSend" component={ArticleSend}/>*/}
+                <Route path="/nav/football" component={Football}/>
                 <Route path="/nav/manage" component={ManagePage}/>
                 <Route path="/nav/message" component={MessagePage}/>
             </Switch>

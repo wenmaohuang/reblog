@@ -1,7 +1,40 @@
-
 import React from "react";
 import styles from "./SearchInfo.module.scss";
 import Media from 'react-media';
+import styled from "styled-components"
+
+
+const SmallInput = styled.input`
+border-radius: 10px 0 0 10px;
+background-color:#fff;
+box-sizing: border-box;
+font-size: 20px;
+text-indent: 0.5em;
+border: 1px solid #000;
+color: #000;
+width: 400px;
+height: 50px;
+
+:focus{
+   outline: none;
+}
+@media screen and (max-width: 500px) {
+ width: 260px;
+}
+
+`
+const SmallUl = styled.ul
+`
+background-color: #fff;
+width: 480px;
+margin: 10px auto;
+border-radius: 10px;
+@media screen and (max-width: 500px) {
+ width: 340px;
+}
+
+`
+
 
 class SearchInfo extends React.Component {
     constructor(props) {
@@ -21,12 +54,14 @@ class SearchInfo extends React.Component {
                     result: msg.map((item, index) => {
                         return (
 
-                            <li key={index} style={{ listStyleType: 'none', margin: '5px', fontSize: '20px' }}>
+                            <li key={index} style={{
+                                listStyleType: 'none',
+                                margin: '5px',
+                                fontSize: '20px'
+                            }}>
                                 <a href={'https://www.baidu.com/s?wd=' + item} target="_blank">{item}</a>
-                            </li>
-                        )
-                    }
-                    )
+                            </li>)
+                    })
                 })
                 console.log(this.jsonArr, '%*');
             });
@@ -45,6 +80,7 @@ class SearchInfo extends React.Component {
                 }
                 localStorage.setItem("list", JSON.stringify(list));
             }
+
             setStore(this.textInput.value);
 
             window.location.href = "https://www.baidu.com/s?wd=" + this.textInput.value;
@@ -56,13 +92,14 @@ class SearchInfo extends React.Component {
             result: JSON.parse(localStorage.getItem("list")).map((item, index) => {
                 return (
 
-                    <li key={index}
-                        style={{ listStyleType: 'none', margin: '5px', fontSize: '20px' }}>
+                    <li key={index} style={{
+                        listStyleType: 'none',
+                        margin: '5px',
+                        fontSize: '20px'
+                    }}>
                         <a href={'https://www.baidu.com/s?wd=' + item} target="_blank">{item}</a>
-                    </li>
-                )
-            }
-            )
+                    </li>)
+            })
         })
     }
     // componentWillUnmount() {
@@ -73,63 +110,37 @@ class SearchInfo extends React.Component {
             return;
         };
     }
-
-        render() {
-
+    render() {
         return (
-
-            <Media queries={{
-                small: "(max-width: 499px)",
-                // medium: "(min-width: 600px) and (max-width: 1199px)",
-                large: "(min-width: 500px)"
+            <div className={styles.main} style={{
+                position: 'absolute',
+                backgroundColor: 'transparent',
+                width: '100%',
+                margin: '200px auto',
+                flexDirection: 'column',
+                display: 'flex'
             }}>
-                {matches => (
+                <div className="input" style={{
+                    display: 'flex',
+                    margin: '0 auto'
+                }}>
+                    <SmallInput onFocus={this.handleFocus} onKeyUp={this.handleSarch} onInput={this.handleFetch} autoFocus ref={(input) => { this.textInput = input; }}></SmallInput>
+                    <button style={{
+                        width: '80px',
+                        height: '50px',
+                        borderRadius: '0 10px 10px 0',
+                        boxSizing: 'border-box',
+                        border: '1px solid #000'
+                    }}>搜索
+                    </button>
 
-                    <div>
-                        {matches.small &&
-                            <div className={styles.main}
-                                style={{ position: 'absolute', backgroundColor: 'transparent', width: '100%', margin: '200px auto', flexDirection: 'column', display: 'flex' }}>
-                                <div className="input"
-                                    style={{ display: 'flex', margin: '0 auto' }}>
-                                    <input onFocus={this.handleFocus} onKeyUp={this.handleSarch} onInput={this.handleFetch} autoFocus ref={(input) => { this.textInput = input; }} className={styles.handleFocus}
-                                        style={{ borderRadius: '10px 0 0 10px', boxSizing: 'border-box', fontSize: '20px', textIndent: '0.5em', border: '1px solid #000', color: '#000', width: '260px', height: '50px' }}></input>
-                                    <button
-                                        style={{ width: '80px', height: '50px', borderRadius: '0 10px 10px 0', boxSizing: 'border-box', border: '1px solid #000' }}
-                                    >搜索</button>
+                </div>
+                <SmallUl>
+                    {this.state.result}
+                </SmallUl>
 
-                                </div>
-                                <ul
-                                    style={{ backgroundColor: '#fff', width: '340px', margin: '10px auto', borderRadius: '10px' }}>
-                                    {this.state.result}
-                                </ul>
-
-                            </div>
-                        }
-                        {/* {matches.medium && <p>I am medium!</p>} */}
-                        {matches.large &&
-                            <div className={styles.main}
-                                style={{ position: 'absolute', backgroundColor: 'transparent', width: '100%', margin: '200px auto', flexDirection: 'column', display: 'flex' }}>
-                                <div className="input"
-                                    style={{ display: 'flex', margin: '0 auto' }}>
-                                    <input onFocus={this.handleFocus} onKeyUp={this.handleSarch} onInput={this.handleFetch} autoFocus ref={(input) => { this.textInput = input; }} className={styles.handleFocus}
-                                        style={{ borderRadius: '10px 0 0 10px', boxSizing: 'border-box', fontSize: '20px', textIndent: '0.5em', border: '1px solid #000', color: '#000', width: '400px', height: '50px' }}></input>
-                                    <button
-                                        style={{ width: '80px', height: '50px', borderRadius: '0 10px 10px 0', boxSizing: 'border-box', border: '1px solid #000' }}
-                                    >搜索</button>
-
-                                </div>
-                                <ul
-                                    style={{ backgroundColor: '#fff', width: '480px', margin: '10px auto', borderRadius: '10px' }}>
-                                    {this.state.result}
-                                </ul>
-
-                            </div>
-                        }
-                    </div>
-                )}
-            </Media>
-
-        )
+            </div>)
     }
 }
+
 export default SearchInfo;

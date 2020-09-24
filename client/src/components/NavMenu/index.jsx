@@ -10,6 +10,7 @@ import {
     ContainerOutlined,
     MailOutlined,
 } from '@ant-design/icons';
+import {Link} from "react-router-dom";
 
 const {SubMenu} = Menu;
 
@@ -53,10 +54,38 @@ class NavMenu extends React.Component {
                         首页
                     </Menu.Item>
                     <Menu.Item key="2" icon={<DesktopOutlined/>}>
-                        博客
+                        {/*博客*/}
+                        <Link to="/nav/blog">博客</Link>
                     </Menu.Item>
-                    <Menu.Item key="3" icon={<ContainerOutlined/>}>
-                        管理
+                    <Menu.Item key="3" icon={<DesktopOutlined/>}>
+                        {/*足球*/}
+                        <Link to="/nav/football">足球</Link>
+
+                    </Menu.Item>
+                    <Menu.Item key="4" icon={<ContainerOutlined/>}>
+                        {/*管理*/}
+                        <Link to="/nav/manage">管理</Link>
+
+                    </Menu.Item>
+                    <Menu.Item key="5" icon={<ContainerOutlined/>}>
+                        {/*管理*/}
+                        <Link to="/nav/message">留言</Link>
+
+                    </Menu.Item>
+                    <Menu.Item key="6" icon={<ContainerOutlined/>}>
+                        {/*管理*/}
+                        <Link to="/daily">日记</Link>
+
+                    </Menu.Item>
+                    <Menu.Item key="7" icon={<ContainerOutlined/>}>
+                        {/*管理*/}
+                        <Link to="/links">友链</Link>
+
+                    </Menu.Item>
+                    <Menu.Item key="8" icon={<ContainerOutlined/>}>
+                        {/*管理*/}
+                        <Link to="/about">关于</Link>
+
                     </Menu.Item>
 
                 </Menu>

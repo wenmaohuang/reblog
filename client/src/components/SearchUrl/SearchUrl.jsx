@@ -11,6 +11,7 @@ class SearchUrl extends React.Component {
 
         this.urlList = {
             bilibiliFlutter:"https://www.bilibili.com/video/BV1S4411E7LY?p=4",
+            pub:"https://pub.flutter-io.cn",
             ant: "https://ant.design/components/divider/",
             bilibiliGulp: "https://www.bilibili.com/video/BV1D4411P7tx?p=3",
             github: "https://github.com/",

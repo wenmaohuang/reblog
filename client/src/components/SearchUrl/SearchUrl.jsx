@@ -10,6 +10,7 @@ class SearchUrl extends React.Component {
         super(props);
 
         this.urlList = {
+            dart:"https://dart.cn/guides/language/language-tour",
             flutterLearn:"https://learnku.com/blog/ZeLingNing",
             bilibiliFlutter:"https://www.bilibili.com/video/BV1S4411E7LY?p=4",
             pub:"https://pub.flutter-io.cn",

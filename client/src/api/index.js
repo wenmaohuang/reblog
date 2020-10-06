@@ -1,6 +1,6 @@
 import axios from 'axios'
 // axios.defaults.baseURL = 'http://localhost:3001'
-axios.defaults.baseURL = 'http://www.fyyd.vip:3001'
+axios.defaults.baseURL = 'http://www.fyyd.vip:3001/re'
 axios.defaults.withCredentials = true
 axios.defaults.headers.post["Content-Type"] = "application/x-www-from-urlencoded"
 export default {

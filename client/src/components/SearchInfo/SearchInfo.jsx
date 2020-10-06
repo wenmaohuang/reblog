@@ -144,3 +144,7 @@ class SearchInfo extends React.Component {
 }
 
 export default SearchInfo;
+
+
+
+

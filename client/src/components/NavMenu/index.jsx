@@ -55,9 +55,9 @@ class NavMenu extends React.Component {
                     </Menu.Item>
                     <Menu.Item key="2" icon={<DesktopOutlined/>}>
                         {/*博客*/}
-                        <Link to="/nav/blog">博客</Link>
+                        <Link to="/nav/blog" onClick={this.toggleCollapsed}>博客</Link>
                     </Menu.Item>
-                    <Menu.Item key="3" icon={<DesktopOutlined/>}>
+                    <Menu.Item key="3" onClick={this.toggleCollapsed} icon={<DesktopOutlined/>}>
                         {/*足球*/}
                         <Link to="/nav/football">足球</Link>
 

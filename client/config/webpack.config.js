@@ -273,7 +273,7 @@ module.exports = function(webpackEnv) {
       //         chunks: "initial",
       //         minChunks: 2,
       //         maxInitialRequests: 5, // The default limit is too small to showcase the effect
-      //         minSize: 0 // This is example is too small to create commons chunks
+      //         minSize: 0 // This is server_chat is too small to create commons chunks
       //     },
       //     vendor: {
       //         test: /node_modules/,
@@ -587,7 +587,7 @@ module.exports = function(webpackEnv) {
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
       new ModuleNotFoundPlugin(paths.appPath),
-      // Makes some environment variables available to the JS code, for example:
+      // Makes some environment variables available to the JS code, for server_chat:
       // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
       // It is absolutely essential that NODE_ENV is set to production
       // during a production build.

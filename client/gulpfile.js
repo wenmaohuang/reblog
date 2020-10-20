@@ -128,12 +128,12 @@ gulp.task('default', gulp.series(handleHTML,handleJSX))
 // }));
 
 // bundler.on('update', rebundle);
-// // bundler.on('log', $.util.log);
+// // bundler.on('log', $.utils.log);
 
 // function rebundle() {
 //     return bundler.bundle()
 //         // log errors if they happen
-//         .on('error', $.util.log.bind($.util, 'Browserify Error'))
+//         .on('error', $.utils.log.bind($.utils, 'Browserify Error'))
 //         .pipe(source(destFileName))
 //         .pipe(gulp.dest(destFolder))
 //         .on('end', function() {

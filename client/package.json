@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "./",
+  "homepage": "./reblog/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

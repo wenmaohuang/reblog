@@ -24,7 +24,7 @@ class App extends Component {
     render() {
         // console.log(this.props, '+*');
         return (
-            <Router>
+            <Router basename={'/reblog'}>
                 <div className="App">
                 </div>
                 <Switch>

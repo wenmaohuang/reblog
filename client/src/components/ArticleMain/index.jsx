@@ -33,7 +33,7 @@ class Index extends React.Component {
     render() {
         console.log(this.props, ';z');
         return (
-            <Router>
+            <Router basename={'/reblog'}>
                 <div style={{width: '960px'}}>
                     {this.props.articleOption && this.props.articleOption.map((item, index) => {
                         let content = item.content.blocks.map((item, index) => {

@@ -5,7 +5,6 @@ import SearchUrl from '../../components/SearchUrl';
 import SearchInfo from '../../components/SearchInfo/SearchInfo';
 import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import NavBar from "../NavBar"
-import ManagePage from '../NavBar/ManagePage';
 
 
 let height = window.innerHeight

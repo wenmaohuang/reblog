@@ -22,7 +22,7 @@ app.use((req, res, next) => {
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
         // "Content-Security-Policy": "upgrade-insecure-requests"
-        // 'Content-Type': 'application/json; charset=utf-8'
+        'Content-Type': 'application/json; charset=utf-8'
     });
     if (req.method === "OPTIONS") {
         res.sendStatus(200);

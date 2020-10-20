@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import './App.css';
-import {HashRouter as Router, Route, Switch, withRouter} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, withRouter} from "react-router-dom";
 import HomePage from "./views/HomePage"
 import NavBar from "./views/NavBar"
 import { getArticleOption,getArticleDetail} from './store/action'

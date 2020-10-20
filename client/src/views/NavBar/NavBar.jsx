@@ -64,7 +64,7 @@ class NavBar extends Component {
                 </>)
         }
 
-        return (<Router basename={'/reblog'}>
+        return (<Router>
 
             <div className={styles.navMain}>
                 <NavMenu></NavMenu>

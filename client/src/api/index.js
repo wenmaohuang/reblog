@@ -28,7 +28,7 @@ export default {
             
             let data = {skip,limit,tag}
             skip += limit
-            return axios.post('/article/getShow',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            return axios.post('/reblog/article/getShow',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
         }
     })(),
     // getArticleTitle() {

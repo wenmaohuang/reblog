@@ -11,7 +11,7 @@ ReactDOM.render(
   // <React.StrictMode>
   // </React.StrictMode>,
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename={'/reblog'}>
       <App />
     </BrowserRouter>
   </Provider>

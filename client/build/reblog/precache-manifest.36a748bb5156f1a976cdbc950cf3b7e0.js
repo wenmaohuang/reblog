@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a4705e56cf5d52424cff0af88cfa911a",
+    "revision": "dd7b7adc5daecad352a95da2af2995ed",
     "url": "/reblog/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reblog/static/css/2.9c8c8187.chunk.css.gz"
   },
   {
-    "revision": "f8a215a396c5ba5f2be4",
+    "revision": "89f4dd82afd721b60948",
     "url": "/reblog/static/css/main.bcdcf153.chunk.css"
   },
   {
@@ -28,12 +28,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reblog/static/js/2.2c82a74a.chunk.js.gz"
   },
   {
-    "revision": "f8a215a396c5ba5f2be4",
-    "url": "/reblog/static/js/main.a945bf5b.chunk.js"
+    "revision": "89f4dd82afd721b60948",
+    "url": "/reblog/static/js/main.98b6d4da.chunk.js"
   },
   {
-    "revision": "e992f84617dce819c6051b6bdf00f1f8",
-    "url": "/reblog/static/js/main.a945bf5b.chunk.js.gz"
+    "revision": "b75426788a8b4169790271015c654c04",
+    "url": "/reblog/static/js/main.98b6d4da.chunk.js.gz"
   },
   {
     "revision": "d5231644058368c7b76d",

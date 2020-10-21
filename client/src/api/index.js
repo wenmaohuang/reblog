@@ -1,6 +1,6 @@
 import axios from 'axios'
 // axios.defaults.baseURL = 'http://localhost:3001'
-axios.defaults.baseURL = 'https://www.fyyd.vip:3001'
+axios.defaults.baseURL = 'https://www.fyyd.vip:3001/reblog'
 // axios.defaults.baseURL = process.env.BASE_URL
 
 // console.log(process.env.HOST+'ol')
@@ -28,7 +28,7 @@ export default {
             
             let data = {skip,limit,tag}
             skip += limit
-            return axios.post('/reblog/article/getShow',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            return axios.post('/article/getShow',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
         }
     })(),
     // getArticleTitle() {

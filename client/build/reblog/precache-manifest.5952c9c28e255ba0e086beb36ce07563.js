@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e5de84d20c4f178ee1b31ea2fd490a1c",
+    "revision": "473a2bcecfddddbcdcd1dac367ccade4",
     "url": "/reblog/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reblog/static/css/2.9c8c8187.chunk.css.gz"
   },
   {
-    "revision": "b98f7960743fcfa3b1df",
-    "url": "/reblog/static/css/main.33b46c36.chunk.css"
+    "revision": "6fee1d525209e6a6dadc",
+    "url": "/reblog/static/css/main.b80fc800.chunk.css"
   },
   {
     "revision": "a9df53ef1239c044139c",
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reblog/static/js/2.2c82a74a.chunk.js.gz"
   },
   {
-    "revision": "b98f7960743fcfa3b1df",
+    "revision": "6fee1d525209e6a6dadc",
     "url": "/reblog/static/js/main.61728986.chunk.js"
   },
   {

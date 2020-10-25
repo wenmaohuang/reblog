@@ -56,7 +56,7 @@ class Index extends React.Component {
                                 </div>
 
                                 <a onClick={this.goToUrl.bind(this, item)} style={{display: 'flex',}} className="content">
-                                    <img style={{width: '250px', padding: '10px', height: '160px'}} src="http://www.fyyd.vip:3001/img/upload/article/4.jpg"/>
+                                    <img style={{width: '250px', padding: '10px', height: '160px'}} src="http://www.fyyd.vip/reblog/img/upload/article/4.jpg"/>
                                     <Content>
                                         {content}
                                     </Content>

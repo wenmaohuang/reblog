@@ -1,6 +1,6 @@
 import axios from 'axios'
 // axios.defaults.baseURL = 'http://localhost:3001/reblog'
-axios.defaults.baseURL = 'http://www.fyyd.vip:3001/reblog'
+axios.defaults.baseURL = 'https://www.fyyd.vip/reblog'
 // axios.defaults.baseURL = process.env.BASE_URL
 
 // console.log(process.env.HOST+'ol')

@@ -56,7 +56,7 @@ class ManagePage extends React.Component {
     render() {
         return (
             <div>
-                <Router>
+                <Router basename={'/reblog'}>
 
 
                     <div>
